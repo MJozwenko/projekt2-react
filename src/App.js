@@ -9,7 +9,14 @@ function App() {
       .then((data) => data.json())
       .then((data) => {
         const currencies = data[0];
-        setCurrency(currencies.rates);
+        setCurrency(
+          currencies.rates.filter(
+            (currency) =>
+              currency.code === "EUR" ||
+              currency.code === "USD" ||
+              currency.code === "CHF"
+          )
+        );
       })
       .catch((err) => console.log(err));
   }, []);
