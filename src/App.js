@@ -29,6 +29,9 @@ function App() {
 
   const handleInput = (e) => {
     setInputValue(e.target.value);
+    if (e.target.value < 0) {
+      setInputValue(e.target.value * -1);
+    }
   };
 
   const handleSelect = (e) => {
