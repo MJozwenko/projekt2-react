@@ -1,5 +1,7 @@
 import "./App.css";
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMoneyBillTransfer } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   useEffect(() => {
@@ -42,32 +44,41 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <div className="title">Przelicznik walut</div>
-      <input
-        type="number"
-        value={inputValue}
-        onChange={handleInput}
-        placeholder="Podaj wartość"
-      />
-      <select id="select" value={selectValue} onChange={handleSelect}>
-        {currency.map((currency) => (
-          <option key={currency.code} value={currency.code}>
-            {currency.code}
-          </option>
-        ))}
-      </select>
-      <button className="btn" onClick={handleButton}>
-        Calculate
-      </button>
-      <div className="result">
-        {spinner ? (
-          <div id="spinner" className="spinner-border" role="status">
-            <span className="visually-hidden"></span>
-          </div>
-        ) : (
-          <p>{finalResult.toFixed(2)} PLN</p>
-        )}
+    <div className="conventer">
+      <div className="logos">
+        <div className="logo">
+          <FontAwesomeIcon icon={faMoneyBillTransfer} size="8x" />
+        </div>
+        <div className="title">Przelicznik walut</div>
+      </div>
+      <div className="content">
+        <input
+          type="number"
+          min="0"
+          value={inputValue}
+          onChange={handleInput}
+          placeholder="Podaj wartość"
+        />
+        <select id="select" value={selectValue} onChange={handleSelect}>
+          {currency.map((currency) => (
+            <option key={currency.code} value={currency.code}>
+              {currency.code}
+            </option>
+          ))}
+        </select>
+        <button className="btn" onClick={handleButton}>
+          Przelicz
+        </button>
+        <p>TO</p>
+        <div className="result">
+          {spinner ? (
+            <div id="spinner" className="spinner-border" role="status">
+              <span className="visually-hidden"></span>
+            </div>
+          ) : (
+            <p>{finalResult.toFixed(2)} PLN</p>
+          )}
+        </div>
       </div>
     </div>
   );
