@@ -48,9 +48,11 @@ function App() {
           (rates) => rates.code === selectValue
         );
         setFinalResult(currencies.rates[index].ask * inputValue);
-        setSpinner(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setSpinner(false);
+      });
   };
 
   return (
@@ -82,9 +84,7 @@ function App() {
         <p>TO</p>
         <div className="result">
           {spinner ? (
-            <div id="spinner" className="spinner-border" role="status">
-              <span className="visually-hidden"></span>
-            </div>
+            <div id="spinner" className="spinner-border" role="status"></div>
           ) : (
             <p>{finalResult.toFixed(2)} PLN</p>
           )}
