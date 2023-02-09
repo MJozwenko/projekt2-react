@@ -7,58 +7,68 @@ function App() {
       .then((data) => data.json())
       .then((data) => {
         const currencies = data[0];
-        const currencyNames = currencies.rates.map((rate) => rate.code);
-        setCurrencyNames(currencyNames);
+        setCurrency(currencies.rates);
       })
       .catch((err) => console.log(err));
   }, []);
 
-  const [currencyNames, setCurrencyNames] = useState([]);
-  const [currency, setCurrency] = useState("PLN");
-  const [amount, setAmount] = useState(0);
-  const [result, setResult] = useState(0);
-
-  const handleSelect = (e) => {
-    setCurrency(e.target.value);
-  };
+  const [currency, setCurrency] = useState([]);
+  const [finalResult, setFinalResult] = useState(0);
+  const [inputValue, setInputValue] = useState(0);
+  const [selectValue, setSelectValue] = useState("EUR");
+  const [spinner, setSpinner] = useState(false);
 
   const handleInput = (e) => {
-    setAmount(e.target.value);
+    setInputValue(e.target.value);
+  };
+
+  const handleSelect = (e) => {
+    setSelectValue(e.target.value);
   };
 
   const handleButton = () => {
-    fetch(`https://api.nbp.pl/api/exchangerates/rates/c/`)
+    setSpinner(true);
+    fetch("https://api.nbp.pl/api/exchangerates/tables/c/")
       .then((data) => data.json())
       .then((data) => {
-        const rate = data.rates[0].mid;
-        setResult(rate * amount);
+        const currencies = data[0];
+        const index = currencies.rates.findIndex(
+          (rates) => rates.code === selectValue
+        );
+        setFinalResult(currencies.rates[index].ask * inputValue);
+        setSpinner(false);
       })
       .catch((err) => console.log(err));
   };
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Exchange rate calculator</h1>
-        <div className="container">
-          <div className="input">
-            <input type="number" onChange={handleInput} />
-            <select onChange={handleSelect}>
-              {currencyNames.map((name) => (
-                <option key={name} value={name}>
-                  {name}
-                </option>
-              ))}
-            </select>
+      <div className="title">Przelicznik walut</div>
+      <input
+        type="number"
+        value={inputValue}
+        onChange={handleInput}
+        placeholder="Podaj wartość"
+      />
+      <select id="select" value={selectValue} onChange={handleSelect}>
+        {currency.map((currency) => (
+          <option key={currency.code} value={currency.code}>
+            {currency.code}
+          </option>
+        ))}
+      </select>
+      <button className="btn" onClick={handleButton}>
+        Calculate
+      </button>
+      <div className="result">
+        {spinner ? (
+          <div id="spinner" className="spinner-border" role="status">
+            <span className="visually-hidden"></span>
           </div>
-          <button className="btn" onClick={handleButton}>
-            Calculate
-          </button>
-          <div className="result">
-            {result.toFixed(2)} {currency}
-          </div>
-        </div>
-      </header>
+        ) : (
+          <p>{finalResult.toFixed(2)} PLN</p>
+        )}
+      </div>
     </div>
   );
 }
