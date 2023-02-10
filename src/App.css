@@ -14,24 +14,6 @@ body {
   justify-content: space-between;
 }
 
-select {
-  width: 200px;
-  height: 60px;
-  font-size: 20px;
-  text-align-last: center;
-  border: none;
-  background-color: #cce3de;
-}
-
-.btn {
-  width: 150px;
-  height: 60px;
-  font-size: x-large;
-  border: none;
-  background-color: #6b9080;
-  color: #eaf4f4;
-}
-
 p {
   font-size: 26px;
   font-weight: bold;

@@ -1,6 +1,8 @@
 import "./App.css";
 import LogoMain from "./Components/logo/LogoMain";
 import Input from "./Components/input/Input";
+import Select from "./Components/select/Select";
+import Button from "./Components/button/Button";
 import { useEffect, useState } from "react";
 
 function App() {
@@ -60,16 +62,12 @@ function App() {
       <LogoMain />
       <div className="content">
         <Input handleInput={handleInput} inputValue={inputValue} />
-        <select id="select" value={selectValue} onChange={handleSelect}>
-          {currency.map((currency) => (
-            <option key={currency.code} value={currency.code}>
-              {currency.code}
-            </option>
-          ))}
-        </select>
-        <button className="btn" onClick={handleButton}>
-          Przelicz
-        </button>
+        <Select
+          handleSelect={handleSelect}
+          currency={currency}
+          selectValue={selectValue}
+        />
+        <Button handleButton={handleButton} />
         <p>TO</p>
         <div className="result">
           {spinner ? (
