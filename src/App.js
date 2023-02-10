@@ -71,7 +71,7 @@ function App() {
         <p>TO</p>
         <div className="result">
           {spinner ? (
-            <div id="spinner" className="spinner-border" role="status"></div>
+            <div id="spinner"></div>
           ) : (
             <p>{finalResult.toFixed(2)} PLN</p>
           )}
