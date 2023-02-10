@@ -1,0 +1,22 @@
+.logos {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.logo {
+  color: #6b9080;
+}
+
+.title {
+  width: 640px;
+  height: 120px;
+  margin-left: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  letter-spacing: 2px;
+  background-color: #6b9080;
+  color: #eaf4f4;
+}
