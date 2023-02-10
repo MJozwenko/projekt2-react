@@ -3,6 +3,7 @@ import LogoMain from "./Components/logo/LogoMain";
 import Input from "./Components/input/Input";
 import Select from "./Components/select/Select";
 import Button from "./Components/button/Button";
+import Result from "./Components/result/Result";
 import { useEffect, useState } from "react";
 
 function App() {
@@ -69,13 +70,7 @@ function App() {
         />
         <Button handleButton={handleButton} />
         <p>TO</p>
-        <div className="result">
-          {spinner ? (
-            <div id="spinner"></div>
-          ) : (
-            <p>{finalResult.toFixed(2)} PLN</p>
-          )}
-        </div>
+        <Result finalResult={finalResult} spinner={spinner} />
       </div>
     </div>
   );
