@@ -19,36 +19,3 @@ p {
   font-weight: bold;
   color: #6b9080;
 }
-
-.result {
-  white-space: nowrap;
-  font-size: 30px;
-  font-weight: bold;
-  color: #6b9080;
-}
-
-#spinner:not([hidden]) {
-  padding-top: 10px;
-  display: flex;
-  justify-content: center;
-}
-
-#spinner::after {
-  content: "";
-  width: 90px;
-  height: 90px;
-  border: 9px solid #f3f3f3;
-  border-top: 10px solid #6b9080;
-  border-radius: 100%;
-  will-change: transform;
-  animation: spin 1s infinite linear;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
