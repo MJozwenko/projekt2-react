@@ -60,15 +60,13 @@ function App() {
       <LogoMain />
       <div className="content">
         <Input handleInput={handleInput} inputValue={inputValue} />
-        <div className="content">
-          <select id="select" value={selectValue} setInputValue={handleSelect}>
-            {currency.map((currency) => (
-              <option key={currency.code} value={currency.code}>
-                {currency.code}
-              </option>
-            ))}
-          </select>
-        </div>
+        <select id="select" value={selectValue} onChange={handleSelect}>
+          {currency.map((currency) => (
+            <option key={currency.code} value={currency.code}>
+              {currency.code}
+            </option>
+          ))}
+        </select>
         <button className="btn" onClick={handleButton}>
           Przelicz
         </button>
